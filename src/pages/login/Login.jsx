@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./login.css";
-import { actionLogin } from "../../services/auth";
+import { actionLogin } from "../../actions/auth";
 
 function Login() {
   const [isConnected, setIsConnected] = useState("");

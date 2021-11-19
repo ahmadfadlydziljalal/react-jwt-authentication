@@ -10,7 +10,7 @@ export const actionLogin = (inputs) => {
       password: inputs.password,
     })
     .then(function (response) {
-      // Jika berhasil login, rediret ke halaman home alias `/`
+      //TODO Jika berhasil login, rediret ke halaman home alias `/`
       localStorage.setItem("access-token", response.data.token);
     })
     .catch(function (error) {
