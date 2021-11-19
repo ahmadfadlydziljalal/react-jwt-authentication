@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./login.css";
 import { actionLogin } from "../../services/auth";
 
