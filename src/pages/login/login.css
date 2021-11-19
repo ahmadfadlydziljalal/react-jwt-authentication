@@ -1,0 +1,10 @@
+.form-container {
+  margin-top: 2em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+input[type="submit"] {
+  background-color: red;
+}
