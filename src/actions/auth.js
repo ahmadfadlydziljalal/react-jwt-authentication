@@ -2,7 +2,7 @@ import axios from "axios";
 
 const BASE_URL = process.env.REACT_APP_BACKEND_URL;
 
-// @POST Login
+// @POST Login (Nanti dari REDUX)
 export const actionLogin = (inputs) => {
   axios
     .post(BASE_URL + "/login", {
@@ -10,8 +10,11 @@ export const actionLogin = (inputs) => {
       password: inputs.password,
     })
     .then(function (response) {
-      //TODO Jika berhasil login, rediret ke halaman home alias `/`
+      // TODO
+      // 1. Jika berhasil login, rediret ke halaman home alias `/`
+
       localStorage.setItem("access-token", response.data.token);
+      navigate("/");
     })
     .catch(function (error) {
       console.log(error);

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
 export const TopNavigation = () => {
   return (
@@ -28,7 +28,7 @@ export const TopNavigation = () => {
               <Link to="/contact">Contact</Link>
             </li>
             <li>
-              <Link to="/logout">Logout</Link>
+              <Link to="/login">Logout</Link>
             </li>
           </ul>
         </div>

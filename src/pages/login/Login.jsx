@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import "./login.css";
-import { actionLogin } from "../../actions/auth";
 
 function Login() {
+  const navigate = useNavigate();
+  const BASE_URL = process.env.REACT_APP_BACKEND_URL;
+
   const [isConnected, setIsConnected] = useState("");
   const [inputs, setInputs] = useState({
     username: "",
@@ -18,10 +22,38 @@ function Login() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    actionLogin(inputs);
+
+    axios
+      .post(BASE_URL + "/login", {
+        username: inputs.username,
+        password: inputs.password,
+      })
+      .then(function (response) {
+        /**
+         * Urutan Proses :
+         * 1. Tampilkan animasi
+         * 2. Simpan access-token ke localStorage yang nanti akan jadi bearer header
+         * 3. Store informasi user ke Redux store
+         * 4. Redirect ke halaman home
+         * 5. Tampilkan model selamat datang
+         */
+
+        localStorage.setItem("access-token", response.data.token);
+        navigate("/");
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   };
 
   useEffect(() => {
+    /**
+     * TODO, Jika user masih valid, halaman ini tidak bisa diakses
+     * 1. Opsi kembalikan ke halaman sebelumnya,
+     * 2. Kembalikan ke halaman home
+     *
+     */
+
     fetch(process.env.REACT_APP_BACKEND_URL + "/hello", { method: "get" })
       .then((response) => response.json())
       .then((data) => setIsConnected(data.message))
